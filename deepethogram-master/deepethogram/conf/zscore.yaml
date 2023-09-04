@@ -1,0 +1,7 @@
+run:
+  type: zscore
+  model: null
+# path to the video file to z-score
+videofile: null
+# every STRIDE frames will be read and statistics computed
+stride: 100
