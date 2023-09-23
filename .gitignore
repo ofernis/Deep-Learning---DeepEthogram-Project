@@ -14,7 +14,13 @@ gui_logs/
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 # User-specific stuff
 *.iml
+*.out
 *.xml
+*.yaml
+*.csv
+*.mp4
+*.tiff
+*.png
 /.idea/*
 .idea/**/*
 /.idea/

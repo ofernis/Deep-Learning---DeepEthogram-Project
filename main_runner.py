@@ -30,7 +30,7 @@ def addDataTrain(project_config, vid_path, csv_path):
         projects.add_video_to_project(project_config, movie_path, mode=mode)
 
     # change path to vids to be the new one 
-    vids_project = project_config['project']['path'] + '\DATA\*\*.mp4'
+    vids_project = project_config['project']['path'] + '/DATA/*/*.mp4'
     list_of_movies_updated = glob.glob(vids_project)
 
     for movie_path, label_path in zip(list_of_movies_updated, csvs):
@@ -49,8 +49,8 @@ def reset_logger():
 
 def copyModels(project_config):
     try:
-        src = 'H:\Models_deepEthogram\MODELS_BACKBONE\pretrained_models'
-        dst = project_config['project']['path'] + '\models\pretrained_models'
+        src = '/home/ofer.nissim/Deep-Learning---Mini-Project/deepethogram/MODELS_BACKBONE/pretrained_models'
+        dst = project_config['project']['path'] + '/models/pretrained_models'
         shutil.copytree(src, dst)
         print("Directory backbone pretrained models copied successfully!")
     except shutil.Error as e:
@@ -67,8 +67,9 @@ def creatnewproject(data_path, project_name, behaviors):
     copyModels(project_config)
     return project_config
 
+# sourcery skip: use-fstring-for-formatting
 if __name__ == '__main__':
-    project_path = r'H:\Models_deepEthogram\\' # This is path example in my local machine 
+    project_path = r'/home/ofer.nissim/Deep-Learning---Mini-Project/deepethogram/Models'
     # these are the real labels you have in the dataset 
     behaviors = ['background', 
             'Perch', 
@@ -83,12 +84,14 @@ if __name__ == '__main__':
             'Table']
 
     # give name to the project (folder will be created with this name + '_deepethogram')
-    project_name = 'CT99_23_06_09 HR tuft control'
+    project_name = 'LOfer'
     project_config = creatnewproject(project_path, project_name, behaviors)
 
     # Paths to the data you want to train on, just example here, change to your paths 
-    vid_path = r'\\192.114.20.62\e\Maisan (Jackie-C-Analys)\2ph Experiments\Videos\CT99\fixed\23_06_09 HR tuft control\23_06_09_HR_tuft_control_deepetho_deepethogram\DATA\*\*.mp4'
-    csv_path = r'\\192.114.20.62\e\Maisan (Jackie-C-Analys)\2ph Experiments\Videos\CT99\fixed\23_06_09 HR tuft control\23_06_09_HR_tuft_control_deepetho_deepethogram\DATA\*\*.csv'
+    vid_path = r'/home/ofer.nissim/Deep-Learning---Mini-Project/deepethogram/Dataset_Final_Project/Anotator/A/Animal_1/Session_1/*/*.mp4'
+    csv_path = r'/home/ofer.nissim/Deep-Learning---Mini-Project/deepethogram/Dataset_Final_Project/Anotator/A/Animal_1/Session_1/*/*.csv'
+    # vid_path = r'/home/ofer.nissim/Deep-Learning---Mini-Project/deepethogram/Dataset_Final_Project/Anotator/*/*/*/*/*.mp4'
+    # csv_path = r'/home/ofer.nissim/Deep-Learning---Mini-Project/deepethogram/Dataset_Final_Project/Anotator/*/*/*/*/*.csv'
     addDataTrain(project_config, vid_path, csv_path)
     
     # stage 0: check dirs for project and initializations
@@ -100,14 +103,12 @@ if __name__ == '__main__':
     
     log = reset_logger()
     print_dataset_info(os.path.join(project_path, 'DATA'))
-        
+    
     # check the gpus used 
     print(torch.__version__)
     print('gpu available: {}'.format(torch.cuda.is_available()))
     print('gpu name: {}'.format(torch.cuda.get_device_name(0)))
     assert torch.cuda.is_available(), 'Please select a GPU runtime and then restart!'
-
-
 
     # 1 stage: flow generator 
     preset = 'deg_f' # type of model -> deg_f, deg_m, deg_s

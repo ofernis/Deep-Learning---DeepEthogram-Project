@@ -891,6 +891,7 @@ def get_video_datasets(datadir: Union[str, os.PathLike],
     # values: a dictionary corresponding to different files. the first record might be:
     # {'mouse000': {'rgb': path/to/rgb.avi, 'label':path/to/labels.csv} }
     records = projects.get_records_from_datadir(datadir)
+    print(f"{datadir}")
     # some videos might not have flows yet, or labels. Filter records to only get those that have all required files
     records = projects.filter_records_for_filetypes(records, return_types)
 
