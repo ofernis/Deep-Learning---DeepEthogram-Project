@@ -49,7 +49,7 @@ def reset_logger():
 
 def copyModels(project_config):
     try:
-        src = '/home/ofer.nissim/Deep-Learning---Mini-Project/deepethogram/MODELS_BACKBONE/pretrained_models'
+        src = './deepethogram/MODELS_BACKBONE/pretrained_models'
         dst = project_config['project']['path'] + '/models/pretrained_models'
         shutil.copytree(src, dst)
         print("Directory backbone pretrained models copied successfully!")
@@ -69,7 +69,7 @@ def creatnewproject(data_path, project_name, behaviors):
 
 # sourcery skip: use-fstring-for-formatting
 if __name__ == '__main__':
-    project_path = r'/home/ofer.nissim/Deep-Learning---Mini-Project/deepethogram/Models'
+    project_path = r'./deepethogram/Models'
     # these are the real labels you have in the dataset 
     behaviors = ['background', 
             'Perch', 
@@ -88,8 +88,8 @@ if __name__ == '__main__':
     project_config = creatnewproject(project_path, project_name, behaviors)
 
     # Paths to the data you want to train on, just example here, change to your paths 
-    vid_path = r'/home/ofer.nissim/Deep-Learning---Mini-Project/deepethogram/Dataset_Final_Project/Anotator/A/Animal_1/Session_1/*/*.mp4'
-    csv_path = r'/home/ofer.nissim/Deep-Learning---Mini-Project/deepethogram/Dataset_Final_Project/Anotator/A/Animal_1/Session_1/*/*.csv'
+    vid_path = r'./deepethogram/Dataset_Final_Project/Anotator/A/Animal_1/Session_1/*/*.mp4'
+    csv_path = r'./deepethogram/Dataset_Final_Project/Anotator/A/Animal_1/Session_1/*/*.csv'
     # vid_path = r'/home/ofer.nissim/Deep-Learning---Mini-Project/deepethogram/Dataset_Final_Project/Anotator/*/*/*/*/*.mp4'
     # csv_path = r'/home/ofer.nissim/Deep-Learning---Mini-Project/deepethogram/Dataset_Final_Project/Anotator/*/*/*/*/*.csv'
     addDataTrain(project_config, vid_path, csv_path)

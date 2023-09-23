@@ -159,3 +159,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+deepethogram/Models/LOfer_deepethogram/models/230923_174034_flow_generator_train/lightning_logs/version_0/events.out.tfevents.1695480047.lambda4.4092695.0
