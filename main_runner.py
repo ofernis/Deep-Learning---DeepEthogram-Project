@@ -49,7 +49,7 @@ def reset_logger():
 
 def copyModels(project_config):
     try:
-        src = './deepethogram/MODELS_BACKBONE/pretrained_models'
+        src = '/home/ofer.nissim/Deep-Learning---Mini-Project/deepethogram/MODELS_BACKBONE/pretrained_models'
         dst = project_config['project']['path'] + '/models/pretrained_models'
         shutil.copytree(src, dst)
         print("Directory backbone pretrained models copied successfully!")
@@ -69,7 +69,7 @@ def creatnewproject(data_path, project_name, behaviors):
 
 # sourcery skip: use-fstring-for-formatting
 if __name__ == '__main__':
-    project_path = r'./deepethogram/Models'
+    project_path = r'/home/ofer.nissim/Deep-Learning---Mini-Project/deepethogram/Models'
     # these are the real labels you have in the dataset 
     behaviors = ['background', 
             'Perch', 
