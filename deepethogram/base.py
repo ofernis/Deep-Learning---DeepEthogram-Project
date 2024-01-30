@@ -408,6 +408,7 @@ def get_trainer_from_cfg(cfg: DictConfig, lightning_module, stopper, profiler: s
                              num_sanity_val_steps=0,
                              callbacks=callback_list,
                              reload_dataloaders_every_n_epochs=1,
+                             progress_bar_refresh_rate=refresh_rate,
                              profiler=profiler,
                              log_every_n_steps=1)
     torch.cuda.empty_cache()
