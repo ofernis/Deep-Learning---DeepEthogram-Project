@@ -704,6 +704,8 @@ class FeatureVectorDataset(SingleSequenceDataset):
         if self.is_two_stream:
             self.flow_key = self.key + '/flow_features'
             self.image_key = self.key + '/spatial_features'
+        else:
+            self.features_key = self.key + '/features'
         self.logit_key = self.key + '/logits'
         self.data_file = data_file
 
@@ -733,9 +735,7 @@ class FeatureVectorDataset(SingleSequenceDataset):
                 assert flow_shape[0] == image_shape[0]
                 # self.N = image_shape[0]
             else:
-                assert self.key in f
-                shape = f[self.key].shape
-                # self.N = shape[0]
+                assert self.features_key in f
 
     def read_features_from_disk(self, start_ind, end_ind):
         inds = slice(start_ind, end_ind)
@@ -750,7 +750,7 @@ class FeatureVectorDataset(SingleSequenceDataset):
                 image_feats = f[self.image_key][inds, :].T
                 sequence = np.concatenate((image_feats, flow_feats), axis=0)
             else:
-                sequence = f[self.key][inds, :].T
+                sequence = f[self.features_key][inds, :].T
 
             logits = f[self.logit_key][inds, :].T
         return dict(features=sequence, logits=logits)
@@ -1191,7 +1191,7 @@ def get_datasets_from_cfg(cfg: DictConfig, model_type: str, input_images: int = 
         datasets, info = get_sequence_datasets(cfg.project.data_path,
                                                cfg.sequence.latent_name,
                                                cfg.sequence.sequence_length,
-                                               is_two_stream=True,
+                                               is_two_stream=False,
                                                nonoverlapping=cfg.sequence.nonoverlapping,
                                                splitfile=cfg.split.file,
                                                reload_split=True,
