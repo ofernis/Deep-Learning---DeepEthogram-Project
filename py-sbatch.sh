@@ -26,7 +26,7 @@
 # Parameters for sbatch
 #
 NUM_NODES=1
-NUM_CORES=2
+NUM_CORES=8
 NUM_GPUS=1
 JOB_NAME="deg_test_job"
 MAIL_USER="ofer.nissim@campus.technion.ac.il"
