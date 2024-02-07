@@ -320,10 +320,10 @@ def sequence_inference(cfg: DictConfig):
             latent_name,
             output_name,
             cfg.sequence.sequence_length,
-            True,
-            device,
-            cfg.inference.ignore_error,
-            cfg.inference.overwrite,
+            is_two_stream=False,
+            device=device,
+            ignore_error=cfg.inference.ignore_error,
+            overwrite=cfg.inference.overwrite,
             class_names=class_names)
 
 
